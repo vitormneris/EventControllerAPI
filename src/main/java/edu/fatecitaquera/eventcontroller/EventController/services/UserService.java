@@ -15,12 +15,19 @@ import java.util.List;
 public class UserService {
     private final UserRepository userRepository;
 
-    public List<UserEntity> findAll() {
-        return userRepository.findAll();
-    }
-
     public UserEntity findById(String id) {
             return userRepository.findById(id).orElseThrow();
+    }
+
+    public UserEntity findByEmail(String email) {
+        return userRepository.findByEmail(email).orElseThrow();
+    }
+
+    public Boolean login(UserEntity userEntity) {
+        UserEntity entity = userRepository.findByEmail(userEntity.getEmail()).orElse(null);
+        if (entity != null) {
+            return entity.getPassword().equals(userEntity.getPassword());
+        } else return false;
     }
 
     public UserEntity save(UserEntity userEntity) {

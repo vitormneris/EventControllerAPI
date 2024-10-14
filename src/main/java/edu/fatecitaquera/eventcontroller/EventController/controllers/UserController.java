@@ -15,14 +15,19 @@ import java.util.List;
 public class UserController {
     private final UserService userService;
 
-    @GetMapping("/todos")
-    public ResponseEntity<List<UserEntity>> finAll() {
-        return ResponseEntity.ok().body(userService.findAll());
-    }
-
-    @GetMapping("/{id}/encontrar")
+    @GetMapping("/{id}/encontrarporid")
     public ResponseEntity<UserEntity> findById(@PathVariable("id") String id) {
         return ResponseEntity.ok().body(userService.findById(id));
+    }
+
+    @GetMapping("/{email}/encontrarporemail")
+    public ResponseEntity<UserEntity> findByEmail(@PathVariable("email") String email) {
+        return ResponseEntity.ok().body(userService.findByEmail(email));
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<Boolean> login(@RequestBody UserEntity user) {
+        return ResponseEntity.ok().body(userService.login(user));
     }
 
     @PostMapping("/inserir")
