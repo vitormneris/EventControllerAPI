@@ -26,7 +26,7 @@ public class EventService {
             return eventRepository.findById(id).orElseThrow();
     }
 
-    public void userAddEvent( String userId, String eventId) {
+    public void userAddEvent(String userId, String eventId) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
         Instant now = Instant.now();
 

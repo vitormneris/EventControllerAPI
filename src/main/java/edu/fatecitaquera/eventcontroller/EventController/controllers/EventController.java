@@ -27,7 +27,7 @@ public class EventController {
     }
 
     @GetMapping("/usuarioid/{userId}/eventoid/{eventId}")
-    public ResponseEntity<UserEntity> userAddEvent(@PathVariable("userId") String userId, @PathVariable("eventId") String eventId) {
+    public ResponseEntity<Void> userAddEvent(@PathVariable("userId") String userId, @PathVariable("eventId") String eventId) {
         eventService.userAddEvent(userId, eventId);
         return ResponseEntity.noContent().build();
     }
