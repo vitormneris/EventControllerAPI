@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import java.time.Instant;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
@@ -28,7 +29,7 @@ public class EventService {
 
     public void userAddEvent(String userId, String eventId) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
-        Instant now = Instant.now();
+        LocalDateTime now = LocalDateTime.now();
 
         UserEntity userEntity = userRepository.findById(userId).orElseThrow();
         EventEntity eventEntity = eventRepository.findById(eventId).orElseThrow();
