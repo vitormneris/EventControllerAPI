@@ -1,6 +1,7 @@
 package edu.fatecitaquera.eventcontroller.EventController.controllers;
 
 import edu.fatecitaquera.eventcontroller.EventController.model.entities.EventEntity;
+import edu.fatecitaquera.eventcontroller.EventController.model.entities.UserEntity;
 import edu.fatecitaquera.eventcontroller.EventController.services.EventService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -23,6 +24,12 @@ public class EventController {
     @GetMapping("/{id}/encontrar")
     public ResponseEntity<EventEntity> findById(@PathVariable("id") String id) {
         return ResponseEntity.ok().body(eventService.findById(id));
+    }
+
+    @GetMapping("/usuarioid/{userId}/eventoid/{eventId}")
+    public ResponseEntity<UserEntity> userAddEvent(@PathVariable("userId") String userId, @PathVariable("eventId") String eventId) {
+        eventService.userAddEvent(userId, eventId);
+        return ResponseEntity.noContent().build();
     }
 
     @PostMapping("/inserir")
