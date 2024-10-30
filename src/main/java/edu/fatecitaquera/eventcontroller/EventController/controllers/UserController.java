@@ -30,7 +30,11 @@ public class UserController {
 
     @PostMapping("/inserir")
     public ResponseEntity<UserEntity> insert(@RequestBody UserEntity user) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(userService.save(user));
+        UserEntity userEntity = userService.save(user);
+        if (userEntity == null) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).build();
+        }
+        return ResponseEntity.status(HttpStatus.CREATED).body(userEntity);
     }
 
     @PutMapping("/{id}/atualizar")

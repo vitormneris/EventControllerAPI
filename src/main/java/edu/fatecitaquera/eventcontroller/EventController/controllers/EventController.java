@@ -33,11 +33,7 @@ public class EventController {
 
     @PostMapping("/inserir")
     public ResponseEntity<EventEntity> insert(@RequestBody EventEntity event) {
-        EventEntity eventEntity = eventService.save(event);
-        if (eventEntity == null) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).build();
-        }
-        return ResponseEntity.status(HttpStatus.CREATED).body(eventEntity);
+        return ResponseEntity.status(HttpStatus.CREATED).body(eventService.save(event));
     }
 
     @PutMapping("/{id}/atualizar")
