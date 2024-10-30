@@ -1,7 +1,6 @@
 package edu.fatecitaquera.eventcontroller.EventController.controllers;
 
 import edu.fatecitaquera.eventcontroller.EventController.model.entities.EventEntity;
-import edu.fatecitaquera.eventcontroller.EventController.model.entities.UserEntity;
 import edu.fatecitaquera.eventcontroller.EventController.services.EventService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -34,7 +33,11 @@ public class EventController {
 
     @PostMapping("/inserir")
     public ResponseEntity<EventEntity> insert(@RequestBody EventEntity event) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(eventService.save(event));
+        EventEntity eventEntity = eventService.save(event);
+        if (eventEntity == null) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).build();
+        }
+        return ResponseEntity.status(HttpStatus.CREATED).body(eventEntity);
     }
 
     @PutMapping("/{id}/atualizar")

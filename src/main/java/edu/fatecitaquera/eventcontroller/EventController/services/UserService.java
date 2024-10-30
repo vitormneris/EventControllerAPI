@@ -32,6 +32,9 @@ public class UserService {
 
     public UserEntity save(UserEntity userEntity) {
         userEntity.setId(null);
+        if (userRepository.findByEmail(userEntity.getEmail()).isPresent()) {
+             return null;
+        }
         return userRepository.save(userEntity);
     }
 
