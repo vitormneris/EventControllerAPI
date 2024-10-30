@@ -29,7 +29,7 @@ public class EventService {
 
     public void userAddEvent(String userId, String eventId) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
-        LocalDateTime now = LocalDateTime.now().minusHours(-3);
+        LocalDateTime now = LocalDateTime.now().minusHours(+3);
 
         UserEntity userEntity = userRepository.findById(userId).orElseThrow();
         EventEntity eventEntity = eventRepository.findById(eventId).orElseThrow();
